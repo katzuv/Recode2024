@@ -50,14 +50,12 @@ object Robot : LoggedRobot() {
                 Logger.addDataReceiver(WPILOGWriter())
                 Logger.addDataReceiver(NT4Publisher())
             }
-
             Constants.Mode.SIM -> Logger.addDataReceiver(NT4Publisher())
             Constants.Mode.REPLAY -> {
                 setUseTiming(false)
                 val logPath = LogFileUtil.findReplayLog()
                 Logger.setReplaySource(WPILOGReader(logPath))
-                Logger.addDataReceiver(
-                        WPILOGWriter(LogFileUtil.addPathSuffix(logPath, "_sim")))
+                Logger.addDataReceiver(WPILOGWriter(LogFileUtil.addPathSuffix(logPath, "_sim")))
             }
         }
         Logger.start()
@@ -71,7 +69,6 @@ object Robot : LoggedRobot() {
      * This function is called every robot packet, no matter the mode. Use this for items like
      * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
      *
-     *
      * This runs after the mode specific periodic functions, but before LiveWindow and
      * SmartDashboard integrated updating.
      */
@@ -84,7 +81,6 @@ object Robot : LoggedRobot() {
      * autonomous modes using the dashboard. The sendable chooser code works with the Java
      * SmartDashboard. If you prefer the LabVIEW Dashboard, remove all of the chooser code and
      * uncomment the getString line to get the auto name from the text box below the Gyro
-     *
      *
      * You can add additional auto modes by adding additional comparisons to the switch structure
      * below with additional strings. If using the SendableChooser make sure to add them to the
@@ -100,30 +96,30 @@ object Robot : LoggedRobot() {
         }
     }
 
-    /** This function is called periodically during autonomous.  */
+    /** This function is called periodically during autonomous. */
     override fun autonomousPeriodic() {}
 
-    /** This function is called once when teleop is enabled.  */
+    /** This function is called once when teleop is enabled. */
     override fun teleopInit() {
         if (autonomousCommand != null) {
             autonomousCommand!!.cancel()
         }
     }
 
-    /** This function is called periodically during operator control.  */
+    /** This function is called periodically during operator control. */
     override fun teleopPeriodic() {}
 
-    /** This function is called once when the robot is disabled.  */
+    /** This function is called once when the robot is disabled. */
     override fun disabledInit() {}
 
-    /** This function is called periodically when disabled.  */
+    /** This function is called periodically when disabled. */
     override fun disabledPeriodic() {}
 
-    /** This function is called once when test mode is enabled.  */
+    /** This function is called once when test mode is enabled. */
     override fun testInit() {
         CommandScheduler.getInstance().cancelAll()
     }
 
-    /** This function is called periodically during test mode.  */
+    /** This function is called periodically during test mode. */
     override fun testPeriodic() {}
 }
