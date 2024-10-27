@@ -170,6 +170,9 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
+    kotlin {
+        ktfmt()
+    }
 }
 
 idea {
