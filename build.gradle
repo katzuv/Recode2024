@@ -126,12 +126,12 @@ wpi.java.configureTestTasks(test)
 project.compileKotlin.dependsOn(createVersionFile)
 project.compileJava.dependsOn(createVersionFile)
 gversion {
-    srcDir       = "src/main/kotlin/"
+    srcDir = "src/main/kotlin/"
     classPackage = "frc.robot"
-    className    = "BuildConstants"
-    dateFormat   = "yyyy-MM-dd HH:mm z"
-    timeZone     = "Asia/Jerusalem"
-    indent       = "  "
+    className = "BuildConstants"
+    dateFormat = "yyyy-MM-dd HH:mm z"
+    timeZone = "Asia/Jerusalem"
+    indent = "  "
 }
 
 tasks.withType(JavaCompile) {
@@ -148,7 +148,15 @@ kotlin {
 }
 
 spotless {
+    format 'misc', {
+        // define the files to apply `misc` to
+        target '*gradle*', '.gitattributes', '.gitignore'
 
+        // define the steps to apply to those files
+        trimTrailingWhitespace()
+        indentWithSpaces(4)
+        endWithNewline()
+    }
 }
 
 idea {
