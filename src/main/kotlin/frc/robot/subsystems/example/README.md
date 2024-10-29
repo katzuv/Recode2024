@@ -6,7 +6,8 @@
 > - [**YAGNI**](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it): Don't create stuff you won't be using.
 > - **Naming**: Are variables and command names clear and concise?
 > - **Types**: Minimize usage of types and use everywhere the best type possible ([`Measure<>` objects](https://docs.wpilib.org/en/latest/docs/software/basic-programming/java-units.html), `Rotation2d`, etc.).
-> - **Decoupling**: Your code needs to be encapsulated well -- functions do one thing, commands aren't different for autonomous and teleoperated, no unrelated code here, etc.
+> - **Decoupling**: Your code needs to be encapsulated well -- functions do one thing, commands aren't different 
+    > for autonomous and teleoperated, no unrelated code here, etc.
 > - **Standards**: Does this code fully adheres to the [team standards document](https://docs.google.com/document/d/1qY1M03Skq-oFGJyZ3J_Y0o0QDthhFiaAKVMJ4-hPrRU/edit)?
 
 # Conveyor Specification
