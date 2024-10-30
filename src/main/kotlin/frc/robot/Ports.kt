@@ -54,13 +54,6 @@ class Ports {
                 REAR_RIGHT_DRIVE_INVERTED,
             )
         private const val REAR_RIGHT_ANGLE_INVERTED = true
-        val ANGLE_INVERTED: BooleanArray =
-            booleanArrayOf(
-                FRONT_LEFT_ANGLE_INVERTED,
-                FRONT_RIGHT_ANGLE_INVERTED,
-                REAR_LEFT_ANGLE_INVERTED,
-                REAR_RIGHT_ANGLE_INVERTED,
-            )
     }
 
     object UI {
