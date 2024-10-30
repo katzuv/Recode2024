@@ -6,12 +6,11 @@ on:
 jobs:
   qodana:
     runs-on: ubuntu-latest
-    permissions: write-all
 
-#    permissions:
-#      contents: write
-#      pull-requests: write
-#      checks: write
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
 
     steps:
       - uses: actions/checkout@v3
