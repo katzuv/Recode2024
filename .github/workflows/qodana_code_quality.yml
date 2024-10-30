@@ -30,3 +30,4 @@ jobs:
         with:
           sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
           ref: ${{ github.head_ref }}
+          sha: ${{ github.sha }}
