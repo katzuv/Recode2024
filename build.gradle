@@ -171,7 +171,7 @@ spotless {
         endWithNewline()
     }
     kotlin {
-        ktfmt().configure { it.setBlockIndent(4) }
+        ktlint()
     }
 }
 
