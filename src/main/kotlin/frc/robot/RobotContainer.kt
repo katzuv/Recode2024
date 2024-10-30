@@ -30,6 +30,9 @@ object RobotContainer {
     fun getAutonomousCommand(): Command = autoChooser.selected
 
     private fun registerAutoCommands() {
-        fun register(name: String, command: Command) = NamedCommands.registerCommand(name, command)
+        fun register(
+            name: String,
+            command: Command,
+        ) = NamedCommands.registerCommand(name, command)
     }
 }
