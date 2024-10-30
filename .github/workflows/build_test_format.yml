@@ -1,6 +1,6 @@
 # Adapted from WPILib docs: https://docs.wpilib.org/en/stable/docs/software/advanced-gradlerio/robot-code-ci.html
 
-name: Build
+name: Build, tests, formatting
 
 # Controls when the action will run. Triggers the workflow on pull request events.
 on:
