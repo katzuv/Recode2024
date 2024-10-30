@@ -148,15 +148,16 @@ kotlin {
 }
 
 spotless {
-    format 'misc', {
-        // define the files to apply `misc` to
+    format('misc') {
+        // Define the files to apply `misc` formatting
         target '*gradle*', '.gitattributes', '.gitignore'
 
-        // define the steps to apply to those files
+        // Define the steps to apply to those files
         trimTrailingWhitespace()
         indentWithSpaces(4)
         endWithNewline()
     }
+
     java {
         targetExclude('**/BuildConstants.java')
 
@@ -170,10 +171,10 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
-    kotlin {
-        ktlint()
-    }
+
+    kotlin { ktlint() }
 }
+
 
 idea {
     project {
