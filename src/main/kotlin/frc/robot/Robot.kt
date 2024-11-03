@@ -39,6 +39,7 @@ object Robot : LoggedRobot() {
         Logger.recordMetadata("GitSHA", BuildConstants.GIT_SHA)
         Logger.recordMetadata("GitDate", BuildConstants.GIT_DATE)
         Logger.recordMetadata("GitBranch", BuildConstants.GIT_BRANCH)
+        @Suppress("KotlinConstantConditions")
         when (BuildConstants.DIRTY) {
             0 -> Logger.recordMetadata("GitDirty", "All changes committed")
             1 -> Logger.recordMetadata("GitDirty", "Uncomitted changes")
