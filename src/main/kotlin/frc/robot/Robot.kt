@@ -26,7 +26,7 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter
 object Robot : LoggedRobot() {
     private val compressor = Compressor(PneumaticsModuleType.CTREPCM)
     private var robotContainer: RobotContainer? = null
-    private var autonomousCommand: Command    ? = null
+    private var autonomousCommand: Command? = null
 
     /**
      * This function is run when the robot is first started up and should be used for any
