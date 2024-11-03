@@ -9,3 +9,4 @@ exclude:
   - name: All
     paths:
       - vendordeps
+      - .wpilib
