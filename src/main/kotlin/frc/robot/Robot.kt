@@ -27,6 +27,7 @@ object Robot : LoggedRobot() {
     private val compressor = Compressor(PneumaticsModuleType.CTREPCM)
     private var robotContainer: RobotContainer? = null
     private var autonomousCommand: Command? = null
+    val x: Int = 0
 
     /**
      * This function is run when the robot is first started up and should be used for any
