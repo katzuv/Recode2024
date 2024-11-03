@@ -1,7 +1,6 @@
 package frc.robot
 
 import com.pathplanner.lib.auto.AutoBuilder
-import com.pathplanner.lib.auto.NamedCommands
 import edu.wpi.first.wpilibj2.command.Command
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController
 
@@ -30,9 +29,5 @@ object RobotContainer {
     fun getAutonomousCommand(): Command = autoChooser.selected
 
     private fun registerAutoCommands() {
-        fun register(
-            name: String,
-            command: Command,
-        ) = NamedCommands.registerCommand(name, command)
     }
 }
