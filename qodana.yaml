@@ -5,3 +5,7 @@ profile:
 include:
   - name: CheckDependencyLicenses
   - name: IncorrectFormatting
+exclude:
+  - name: All
+    paths:
+      - vendordeps
