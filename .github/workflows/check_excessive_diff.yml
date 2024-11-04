@@ -1,0 +1,110 @@
+name: Check Excessive Diff
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check_excessive_diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Retrieve Pull Request Files
+        id: retrieve_files
+        uses: actions/github-script@v7
+        env:
+          FILE_LIMIT: 10
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+
+            const fileLimit = parseInt(process.env.FILE_LIMIT);
+            const tooManyFiles = files.length > fileLimit;
+
+            core.setOutput("files", JSON.stringify(files));
+            core.setOutput("tooManyFiles", tooManyFiles);
+
+      - name: Check Total Lines in Files
+        id: check_total_lines
+        uses: actions/github-script@v7
+        env:
+          LINE_LIMIT: 150
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const files = JSON.parse(${{ steps.retrieve_files.outputs.files }});
+            const lineLimit = parseInt(process.env.LINE_LIMIT);
+            const exceededFiles = [];
+
+            for (const file of files) {
+              const { data: fileContent } = await github.repos.getContent({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                path: file.filename,
+                ref: context.payload.pull_request.base.sha,
+              });
+
+              const content = Buffer.from(fileContent.content, 'base64').toString('utf-8');
+              const totalLines = content.split('\n').length;
+
+              // Check if the file's line count exceeds the limit
+              if (totalLines > lineLimit) {
+                exceededFiles.push({ filename: file.filename, totalLines });
+              }
+            }
+
+            const exceeded = exceededFiles.length > 0 || steps.retrieve_files.outputs.tooManyFiles === 'true';
+            core.setOutput("exceeded", exceeded);
+            core.setOutput("exceededFiles", JSON.stringify(exceededFiles));
+            core.setOutput("totalLines", JSON.stringify(files.map(file => ({ filename: file.filename, totalLines })));
+
+      - name: Generate and Post Comment
+        if: steps.check_total_lines.outputs.exceeded == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const files = JSON.parse(${{ steps.retrieve_files.outputs.files }});
+            const exceededFiles = JSON.parse(${{ steps.check_total_lines.outputs.exceededFiles }});
+
+            // Sort files by path and initialize message comment
+            files.sort((a, b) => a.filename.localeCompare(b.filename));
+            
+            function generateFileTable(files, startIndex = 1) {
+                let table = "| No. | File Path | Total Lines |\n";
+                table += "| --- | --- | --- |\n";
+              
+                files.forEach((file, index) => {
+                  const isExcessive = totalLines > lineLimit ? " ⚠️" : "";
+                  table += `| ${startIndex + index} | \`${file.filename}\` | ${file.totalLines}${isExcessive} |\n`;
+                });
+              
+                return table;
+              }
+              
+              // Generate the main body of the comment
+              let comment = "🚨 ## Excessive Diff Detected 🚨\n";
+              comment += generateFileTable(files.slice(0, 10));
+              
+              // Add a foldable section for additional files, if any
+              if (files.length > 10) {
+                body += "\n<details><summary>📄 Additional Files (click to expand)</summary>\n\n";
+                body += generateFileTable(files.slice(10), 11);
+                body += "</details>";
+              }
+
+            // Post the comment
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              comment,
+            });

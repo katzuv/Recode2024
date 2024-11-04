@@ -1,0 +1,12 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="DO_NOT_FORMAT">
+      <list>
+        <fileSet type="globPattern" pattern="{WPILib-License.md,.gradle/**,.wpilib/**,build/**,vendordeps/**,.idea/libraries/**}" />
+      </list>
+    </option>
+    <JetCodeStyleSettings>
+      <option name="ALLOW_TRAILING_COMMA" value="true" />
+    </JetCodeStyleSettings>
+  </code_scheme>
+</component>
