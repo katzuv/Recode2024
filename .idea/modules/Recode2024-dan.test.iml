@@ -41,7 +41,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="Recode2024-dan.main" />
+    <orderEntry type="module" module-name="Galaxia.Recode2024-dan.main" />
     <orderEntry type="library" name="Gradle: edu.wpi.first.wpilibj:wpilibj-java:2024.3.2" level="project" />
     <orderEntry type="library" name="Gradle: edu.wpi.first.wpimath:wpimath-java:2024.3.2" level="project" />
     <orderEntry type="library" name="Gradle: edu.wpi.first.ntcore:ntcore-java:2024.3.2" level="project" />

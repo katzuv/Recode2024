@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Galaxia.Recode2024-dan.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Galaxia.Recode2024-dan.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Recode2024-dan.iml" filepath="$PROJECT_DIR$/.idea/modules/Recode2024-dan.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Recode2024-dan.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Recode2024-dan.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Recode2024-dan.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Recode2024-dan.test.iml" />
